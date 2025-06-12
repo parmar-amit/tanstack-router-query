@@ -1,0 +1,71 @@
+.about-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+.about-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.about-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+  color: #2d3748;
+}
+.about-header p {
+  color: #4a5568;
+  font-size: 1.1rem;
+}
+.ceo-section,
+.board-section {
+  margin-bottom: 36px;
+}
+.ceo-card,
+.board-card {
+  display: flex;
+  align-items: center;
+  background: #f7fafc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+.ceo-card img,
+.board-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 24px;
+  border: 3px solid #3182ce;
+}
+.ceo-info h2,
+.board-info h3 {
+  margin: 0 0 6px 0;
+  color: #2b6cb0;
+}
+.ceo-info p,
+.board-info p {
+  margin: 0;
+  color: #4a5568;
+}
+.board-section h2 {
+  margin-bottom: 18px;
+  color: #2d3748;
+}
+@media (max-width: 600px) {
+  .ceo-card,
+  .board-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .ceo-card img,
+  .board-card img {
+    margin-bottom: 12px;
+    margin-right: 0;
+  }
+}
