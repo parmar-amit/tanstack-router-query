@@ -1,5 +1,6 @@
-import { useLoaderData, useNavigate } from '@tanstack/react-router';
-import './-components/blog.css';
+import { useLoaderData } from '@tanstack/react-router';
+import '../../components/pages/blog/blog.css';
+import BlogById from '../../components/pages/blog/BlogById';
 
 export const Route = createFileRoute({
   loader: async ({ params }: { params: { blogId: string } }) => {
@@ -18,45 +19,11 @@ export const Route = createFileRoute({
 
 function RouteComponent() {
   const { blogData } = useLoaderData({ from: '/blog/$blogId' });
-  const navigate = useNavigate();
 
   if (!blogData) {
     return <div>Blog post not found</div>;
   }
 
   const { title, body, userId } = blogData;
-  return (
-    <>
-      <div className='blog-details-container'>
-        <h1 className='blog-details-title'>{title}</h1>
-        <p className='blog-details-body'>{body}</p>
-        <p className='blog-details-user'>User ID: {userId}</p>
-      </div>
-      <div
-        style={{
-          position: 'fixed',
-          bottom: '30px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 1000,
-        }}
-      >
-        <button
-          onClick={() => navigate({ to: '..' })}
-          style={{
-            padding: '10px 24px',
-            fontSize: '16px',
-            borderRadius: '8px',
-            border: 'none',
-            background: '#007bff',
-            color: '#fff',
-            cursor: 'pointer',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          }}
-        >
-          Go Back
-        </button>
-      </div>
-    </>
-  );
+  return <BlogById body={body} title={title} userId={userId} />;
 }

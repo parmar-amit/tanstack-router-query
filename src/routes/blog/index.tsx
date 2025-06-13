@@ -1,5 +1,5 @@
 import { useLoaderData } from '@tanstack/react-router';
-import BlogDetails from './-components/BlogDetails';
+import BlogDetails from '../../components/pages/blog/BlogDetails';
 
 export const Route = createFileRoute({
   loader: async () => {
