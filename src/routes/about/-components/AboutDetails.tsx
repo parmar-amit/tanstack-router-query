@@ -1,7 +1,7 @@
 import './about.css';
 import { boardMembers, ceo } from './constant';
 
-export default function Details() {
+export default function AboutDetails() {
   return (
     <div className='about-container'>
       <div className='about-header'>

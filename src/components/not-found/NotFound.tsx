@@ -1,9 +1,12 @@
+import { useNavigate } from '@tanstack/react-router';
 import React from 'react';
 
-const NotFound: React.FC = () => (
-  <div className='not-found-container'>
-    <style>
-      {`
+const NotFound: React.FC = () => {
+  const navigate = useNavigate();
+  return (
+    <div className='not-found-container'>
+      <style>
+        {`
                 .not-found-container {
                     min-height: 80vh;
                     display: flex;
@@ -40,15 +43,19 @@ const NotFound: React.FC = () => (
                     background: #2563eb;
                 }
             `}
-    </style>
-    <div className='not-found-title'>404</div>
-    <div className='not-found-message'>
-      Oops! The page you're looking for doesn't exist.
+      </style>
+      <div className='not-found-title'>404</div>
+      <div className='not-found-message'>
+        Oops! The page you're looking for doesn't exist.
+      </div>
+      <button
+        onClick={() => navigate({ to: '/' })}
+        className='not-found-home-link'
+      >
+        Go Home
+      </button>
     </div>
-    <a href='/' className='not-found-home-link'>
-      Go Home
-    </a>
-  </div>
-);
+  );
+};
 
 export default NotFound;

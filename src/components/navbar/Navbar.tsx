@@ -1,10 +1,10 @@
 import { Link } from '@tanstack/react-router';
-import { navLinks } from './navlink';
+import { routes } from './routes';
 
 const Navbar = () => {
   return (
     <>
-      {navLinks.map((link) => (
+      {routes.map((link) => (
         <Link
           key={link.path}
           to={link.path}

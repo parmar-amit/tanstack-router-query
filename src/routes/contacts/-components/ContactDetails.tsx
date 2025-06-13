@@ -1,8 +1,7 @@
-import React from 'react';
 import './contacts.css';
 
-const Details: React.FC = () => (
-  <>
+export default function ContactDetails() {
+  return (
     <div className='contact-container'>
       <div className='contact-header'>
         <h1>Contact Us</h1>
@@ -106,7 +105,5 @@ const Details: React.FC = () => (
         </p>
       </div>
     </div>
-  </>
-);
-
-export default Details;
+  );
+}
