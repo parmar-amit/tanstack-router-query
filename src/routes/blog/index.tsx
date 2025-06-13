@@ -1,10 +1,15 @@
-import { useLoaderData } from '@tanstack/react-router';
 import BlogDetails from '../../components/pages/blog/BlogDetails';
 
 export const Route = createFileRoute({
-  loader: async () => {
+  validateSearch: (search: { limit?: number }) => {
+    const limit =
+      typeof search.limit === 'number' && search.limit > 0 ? search.limit : 20;
+    return { limit };
+  },
+  loaderDeps: ({ search: { limit } }) => ({ limit }),
+  loader: async ({ deps: { limit } }) => {
     const response = await fetch(
-      'https://jsonplaceholder.typicode.com/posts?_limit=20',
+      `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`,
     );
     if (!response.ok) {
       throw new Error('Failed to fetch blog posts');
@@ -12,10 +17,5 @@ export const Route = createFileRoute({
     const posts = await response.json();
     return { posts };
   },
-  component: RouteComponent,
+  component: BlogDetails,
 });
-
-function RouteComponent() {
-  const { posts } = useLoaderData({ from: '/blog/' });
-  return <BlogDetails posts={posts} />;
-}

@@ -1,9 +1,5 @@
 import ContactDetails from '../../components/pages/contacts/ContactDetails';
 
 export const Route = createFileRoute({
-  component: RouteComponent,
+  component: ContactDetails,
 });
-
-function RouteComponent() {
-  return <ContactDetails />;
-}

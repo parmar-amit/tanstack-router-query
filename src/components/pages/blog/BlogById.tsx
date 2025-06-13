@@ -1,14 +1,18 @@
-import { useNavigate } from '@tanstack/react-router';
+import { useLoaderData, useNavigate } from '@tanstack/react-router';
 import React from 'react';
 
-type BlogByIdProps = {
-  title: string;
-  body: string;
-  userId: number;
+type TLoaderData = {
+  post: { title: string; body: string; userId: number };
 };
 
-const BlogById: React.FC<BlogByIdProps> = ({ body, title, userId }) => {
+const BlogById: React.FC = () => {
+  const {
+    post: { body, title, userId },
+  } = useLoaderData({
+    from: '/blog/$blogId',
+  }) satisfies TLoaderData;
   const navigate = useNavigate();
+
   return (
     <>
       <div className='blog-details-container'>
@@ -26,7 +30,12 @@ const BlogById: React.FC<BlogByIdProps> = ({ body, title, userId }) => {
         }}
       >
         <button
-          onClick={() => navigate({ to: '..' })}
+          onClick={() =>
+            navigate({
+              to: '..',
+              search: { limit: 5 },
+            })
+          }
           style={{
             padding: '10px 24px',
             fontSize: '16px',
