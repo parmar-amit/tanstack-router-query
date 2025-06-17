@@ -83,6 +83,13 @@
 .contact-form button:hover {
   background: #1a237e;
 }
+
+.contact-footer {
+  margin-top: 40;
+  color: '#888';
+  font-size: '0.95rem';
+  text-align: 'center';
+}
 @media (max-width: 600px) {
   .contact-container {
     padding: 16px 8px;

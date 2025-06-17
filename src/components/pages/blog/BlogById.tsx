@@ -1,55 +1,60 @@
-import { useLoaderData, useNavigate } from '@tanstack/react-router';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { useNavigate, useParams } from '@tanstack/react-router';
 import React from 'react';
-
-type TLoaderData = {
-  post: { title: string; body: string; userId: number };
-};
+import {
+  fetchPostByIdQuery,
+  useDeletePostMutation,
+} from '../../../services/posts/postsQuery';
+import NotFound from '../../not-found/NotFound';
 
 const BlogById: React.FC = () => {
-  const {
-    post: { body, title, userId },
-  } = useLoaderData({
-    from: '/blog/$blogId',
-  }) satisfies TLoaderData;
   const navigate = useNavigate();
+  const { blogId } = useParams({ from: '/blog/$blogId' });
+  const { data } = useSuspenseQuery(fetchPostByIdQuery(blogId));
+  const deletePost = useDeletePostMutation();
+
+  React.useEffect(() => {
+    if (deletePost.isSuccess) {
+      navigate({
+        to: '..',
+        search: { limit: 3 },
+      });
+    }
+  }, [deletePost.isSuccess, navigate]);
+
+  if (deletePost.isError) {
+    return <NotFound message='Failed to delete the post.' />;
+  }
 
   return (
     <>
       <div className='blog-details-container'>
-        <h1 className='blog-details-title'>{title}</h1>
-        <p className='blog-details-body'>{body}</p>
-        <p className='blog-details-user'>User ID: {userId}</p>
-      </div>
-      <div
-        style={{
-          position: 'fixed',
-          bottom: '30px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 1000,
-        }}
-      >
+        <h1 className='blog-details-title'>{data.title}</h1>
+        <p className='blog-details-body'>{data.body}</p>
+        <p className='blog-details-user'>User ID: {data.userId}</p>
         <button
-          onClick={() =>
-            navigate({
-              to: '..',
-              search: { limit: 5 },
-            })
+          className={
+            deletePost.isPending
+              ? 'blog-delete-button-pending'
+              : 'blog-delete-button'
           }
-          style={{
-            padding: '10px 24px',
-            fontSize: '16px',
-            borderRadius: '8px',
-            border: 'none',
-            background: '#007bff',
-            color: '#fff',
-            cursor: 'pointer',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          }}
+          onClick={() => deletePost.mutate(data.id)}
+          disabled={deletePost.isPending}
         >
-          Go Back
+          {deletePost.isPending ? 'Deleting...' : 'Delete'}
         </button>
       </div>
+      <button
+        className='blog-back-button'
+        onClick={() =>
+          navigate({
+            to: '..',
+            search: { limit: 5 },
+          })
+        }
+      >
+        Go Back
+      </button>
     </>
   );
 };

@@ -27,18 +27,7 @@
     transform 0.18s,
     box-shadow 0.18s;
   min-height: 260px;
-}
-
-.blog-card a {
   cursor: pointer;
-  text-decoration: none !important;
-  color: inherit;
-  display: block;
-  height: 100%;
-  margin-bottom: 8px;
-  box-sizing: border-box;
-   display: flex;
-  flex-direction: column;
 }
 
 .blog-card:hover {
@@ -62,6 +51,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  cursor: pointer;
 }
 .blog-card-user {
   font-size: 0.95rem;
@@ -111,6 +101,61 @@
   font-weight: 500;
   margin-top: 12px;
 }
+
+.blog-delete-button  {
+  padding: 8px 20px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  background: #dc3545;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.blog-delete-button:hover {
+  background: #c82333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.blog-delete-button-pending {
+  padding: 8px 20px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  background: #b0b3bb;
+  color: #f4f4f4;
+  cursor: not-allowed;
+  margin-top: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.blog-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 18px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  background: #e0e7ff;
+  background: #007bff;  
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 18px;
+  transition: background 0.16s, color 0.16s;
+  box-shadow: 0 1px 4px rgba(34,34,59,0.07);
+}
+
+.blog-back-button:hover {
+  background: #c7d2fe;
+  color: #1e3a8a;
+  box-shadow: 0 2px 6px rgba(34,34,59,0.10);
+}
+ 
 
 @media (max-width: 600px) {
   .blog-details-container {

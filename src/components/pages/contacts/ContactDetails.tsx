@@ -91,14 +91,7 @@ export default function ContactDetails() {
           <button type='submit'>Send Message</button>
         </form>
       </div>
-      <div
-        style={{
-          marginTop: 40,
-          color: '#888',
-          fontSize: '0.95rem',
-          textAlign: 'center',
-        }}
-      >
+      <div className='contact-footer'>
         <p>
           <strong>IT Solutions Pvt. Ltd.</strong> &copy;{' '}
           {new Date().getFullYear()} | Empowering your business with technology.

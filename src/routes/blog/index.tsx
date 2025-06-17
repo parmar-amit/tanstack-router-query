@@ -1,4 +1,5 @@
 import BlogDetails from '../../components/pages/blog/BlogDetails';
+import { fetchAllPostQuery } from '../../services/posts/postsQuery';
 
 export const Route = createFileRoute({
   validateSearch: (search: { limit?: number }) => {
@@ -7,15 +8,7 @@ export const Route = createFileRoute({
     return { limit };
   },
   loaderDeps: ({ search: { limit } }) => ({ limit }),
-  loader: async ({ deps: { limit } }) => {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`,
-    );
-    if (!response.ok) {
-      throw new Error('Failed to fetch blog posts');
-    }
-    const posts = await response.json();
-    return { posts };
-  },
+  loader: async ({ deps: { limit }, context: { queryClient } }) =>
+    queryClient.ensureQueryData(fetchAllPostQuery({ limit })),
   component: BlogDetails,
 });
