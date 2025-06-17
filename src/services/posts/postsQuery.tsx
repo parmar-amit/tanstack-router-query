@@ -30,6 +30,7 @@ export function useDeletePostMutation() {
   const queryClient = useQueryClient();
   // This mutation will delete a post by its ID and invalidate the posts query
   return useMutation<void, Error, number>({
+    mutationKey: ['deletePost'],
     mutationFn: (postId: number) => PostApi.deletePostById(postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
