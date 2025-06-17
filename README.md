@@ -22,8 +22,8 @@ Welcome to **TS Router Demo** – a modern, interactive demo project showcasing 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/ts-router-demo.git
-   cd ts-router-demo
+   git clone https://github.com/parmar-amit/tanstack-router-query.git
+   cd tanstack-router-query
    ```
 
 2. **Install dependencies:**
@@ -39,7 +39,7 @@ Welcome to **TS Router Demo** – a modern, interactive demo project showcasing 
    ```
 
 4. **Open your browser:**
-   - Visit [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal).
+   - Visit [http://localhost:3000](http://localhost:3000) (or the port shown in your terminal).
 
 ---
 
