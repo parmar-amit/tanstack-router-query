@@ -10,6 +10,9 @@ export const Route = createFileRoute({
       }
       return { blogId };
     },
+    stringify: (params) => {
+      return { blogId: String(params.blogId) };
+    },
   },
   loader: async ({ params: { blogId }, context: { queryClient } }) =>
     queryClient.ensureQueryData(fetchPostByIdQuery(blogId)),
