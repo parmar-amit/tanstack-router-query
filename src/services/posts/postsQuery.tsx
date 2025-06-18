@@ -3,6 +3,7 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 import { PostApi, PostTypes } from '../../api';
 
 // Fetch all posts with optional limit
@@ -33,7 +34,11 @@ export function useDeletePostMutation() {
     mutationKey: ['deletePost'],
     mutationFn: (postId: number) => PostApi.deletePostById(postId),
     onSuccess: () => {
+      toast.success(`Post deleted successfully`);
       queryClient.invalidateQueries({ queryKey: ['posts'] });
+    },
+    onError: (error) => {
+      toast.error(`Failed to delete post: ${error.message}`);
     },
   });
 }
